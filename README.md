@@ -5,5 +5,12 @@ IndoorPositionr is my thesis project, on indoor positioning using Python and Jav
 
 
 
-Main dependencies : Python 2.7 - Flask (newest) - Numpy 
-                    jQuery (newest) - Leafletjs - AwesomeMarkers  (these are already satisfied in the static content folders)
+Main dependencies : 
+- Python 2.7 
+--- Flask (newest)
+--- Numpy 
+
+-jQuery (newest)
+-Leafletjs (newest)
+- AwesomeMarkers(newest)
+(these JS dependencies are already satisfied in the static content folders)
