@@ -1,0 +1,6 @@
+# Dont upload tiles
+FaseII/Web/static/tiles/*
+# Dont upload pictures 
+FaseI/Wlanlist/_Tratamento de Dados/resultados_img/*
+# Dont garbage
+FaseI/Wlanlist/Lixo
