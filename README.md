@@ -10,7 +10,7 @@ Main dependencies :
 --- Flask (newest)
 --- Numpy 
 
--jQuery (newest)
--Leafletjs (newest)
-- AwesomeMarkers(newest)
+- jQuery (newest)
+---- Leafletjs (newest)
+---- AwesomeMarkers(newest)
 (these JS dependencies are already satisfied in the static content folders)
