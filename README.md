@@ -14,3 +14,11 @@ Main dependencies :
 ---- Leafletjs (newest)
 ---- AwesomeMarkers(newest)
 (these JS dependencies are already satisfied in the static content folders)
+
+
+- Android 4.2
+(Should work with older versions)
+
+
+The framework requests works with the following:
+![alt tag](https://raw.github.com/otherview/IndoorPositionr/blob/master/FaseII/DocsRandom/Plataforma.png)
