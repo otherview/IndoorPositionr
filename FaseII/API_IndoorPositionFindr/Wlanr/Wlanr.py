@@ -10,10 +10,33 @@
 #-------------------------------------------------------------------------------
 
 
+def getScan():
+    import winWlanApi 
+    
+    scan = winWlanApi.get_BSSI()
+    tmpScan = {}
+    
+    for bssi in scan:
+        tmpScan[bssi] = int(scan[bssi][1])
+        
+    
+    return tmpScan
 
 def main():
-    pass
-    
+
+    import time
+    test = getScan()
+    for i in range(0,10):
+        time.sleep(1)
+        oldTest = test
+        test = getScan()
+        print "Teste: "+str(i)
+        if oldTest == test:
+            print "IGUAL"
+        else:
+            print "DIFERENTE"
+        print test
+    print "End"
     
 if __name__ == '__main__':
     main()

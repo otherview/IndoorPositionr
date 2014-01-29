@@ -4,3 +4,5 @@ FaseII/Web/static/tiles/*
 FaseI/Wlanlist/_Tratamento de Dados/resultados_img/*
 # Dont garbage
 FaseI/Wlanlist/Lixo
+# Dont upload Server Files
+FaseIII/Server

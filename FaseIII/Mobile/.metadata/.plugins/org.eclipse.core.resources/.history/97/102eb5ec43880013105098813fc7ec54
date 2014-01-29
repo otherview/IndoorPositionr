@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+     
+     <TextView
+         android:id="@+id/textView2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentTop="true"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="36dp"
+         android:text="@string/Title" />
+
+     <TextView
+         android:id="@+id/textView1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_centerHorizontal="true"
+         android:layout_marginBottom="119dp"
+         android:maxLines="15"
+         android:scrollbars="vertical"
+         android:text="@string/hello_world" />
+
+     <EditText
+         android:id="@+id/editText1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/textViewUserID"
+         android:layout_alignBottom="@+id/textViewUserID"
+         android:layout_toRightOf="@+id/button1"
+         android:ems="10" />
+
+     <TextView
+         android:id="@+id/textViewUserID"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignRight="@+id/button1"
+         android:layout_below="@+id/textView2"
+         android:layout_marginRight="16dp"
+         android:layout_marginTop="25dp"
+         android:text="User ID:" />
+
+     <Button
+         android:id="@+id/button2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignRight="@+id/editText1"
+         android:layout_below="@+id/editText1"
+         android:layout_marginTop="35dp"
+         android:clickable="false"
+         android:onClick="launchURL"
+         android:text="launchURL" />
+
+     <Button
+         android:id="@+id/button1"
+         android:layout_width="100dp"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/button2"
+         android:layout_alignBottom="@+id/button2"
+         android:layout_toLeftOf="@+id/textView2"
+         android:onClick="sendMessage"
+         android:text="@string/button_send" />
+
+</RelativeLayout>

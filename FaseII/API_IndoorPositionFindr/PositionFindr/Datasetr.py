@@ -25,7 +25,7 @@ class Datasetr:
                 self.baseSurvey[pos] = {}
                 
             for bssi in data[pos]:
-                self.baseSurvey[pos][bssi] = np.asscalar(np.absolute(np.average(data[pos][bssi])))
+                self.baseSurvey[pos][bssi] = np.asscalar(np.absolute(np.median(data[pos][bssi])))
         
         return
     
@@ -34,7 +34,7 @@ class Datasetr:
         tmpDataset = {}
         
         for bssi in data:
-            tmpDataset[bssi] = np.asscalar(np.absolute(np.average(data[bssi])))
+            tmpDataset[bssi] = np.asscalar(np.absolute(np.median(data[bssi])))
         
         return tmpDataset
     
@@ -52,7 +52,7 @@ class Datasetr:
             tmpDict[bssi] = float(avgPower)
             
         for bssi in tmpDict:
-            self.scannedDataset[(0,0)][bssi] = np.asscalar(np.absolute(np.average(tmpDict[bssi])))
+            self.scannedDataset[(0,0)][bssi] = np.asscalar(np.absolute(np.median(tmpDict[bssi])))
         
         return
 
@@ -68,7 +68,7 @@ class Datasetr:
             tmpDict[bssi] = float(data[bssi][1])
             
         for bssi in tmpDict:
-            self.scannedDataset[(0,0)][bssi[:-1]] = np.asscalar(np.absolute(np.average(tmpDict[bssi])))
+            self.scannedDataset[(0,0)][bssi[:-1]] = np.asscalar(np.absolute(np.median(tmpDict[bssi])))
         
         return
 

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <script src="/external/jquery-latest/jquery-latest.min.js" type="text/javascript"></script>
+    
+    <!----------- leaflet Maps ----------->
+    <link rel="stylesheet" href="/external/leaflet-0.7/leaflet.css" />
+    <script src="/external/leaflet-0.7/leaflet.js"></script>
+    <!---------- Awesome Markers --------->
+    <script src="/libs/awesomeMarkers/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="/libs/awesomeMarkers/leaflet.awesome-markers.css">
+    
+    <!---------- leaflet Draw ------------>
+    <link rel="stylesheet" href="/libs/leaflet-draw/leaflet.draw.css">
+    <script src="/libs/leaflet-draw/leaflet.draw-src.js"></script>
+ 
+    
+    
+    <!----------- local libs ----------->
+    <script src="/js/TagusMap.js"></script>
+    <script src="/js/AccessPoints.js"></script>
+    <script src="/js/SingleAccessPoint.js"></script>
+    <script src="/js/TagusMapControl.js"></script>
+    <script src="/js/TagusMapControlGrid.js"></script>
+    <script src="/js/TagusMapControlCompare.js"></script>
+    
+    <!----------- local css and Page Functioning---------------->
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/PageRender.js"></script>
+    <title>TagusFinder</title>
+</head>
+<body><h3> Tese Indoor Positioning</h3>
+    <div id="ButtonSpace" style="height: 400px;">
+    <button type="button" onclick="tagusMap.showSurveyAccessPoints()">Surveyed Positions</button>
+    <button type="button" onclick="tagusMapControl.initGrid()">Show Grid</button>
+    <button type="button" onclick="tagusMap.showMeasuredPathAccessPoints()">Load Real Path</button>
+    <button type="button" onclick="tagusMap.showScanGuessPosition()">Scan and Guess Position</button>
+    <button type="button" onclick="tagusMap.showScanGuessAndLogPosition()" id="buttonContinuousScan">Scan Guess Position and Log </button>
+    <button type="button" onclick="tagusMap.showWalkandGuessPosition()" id="buttonContinuousScan">Load walk and Guess Positioning </button>
+    <button type="button" onclick="tagusMap.showMobilePosition()" id="showMobilePosition" style="height: 50px">Start Show Mobile Position</button>
+    <div id="scanGuessStatus" style="background: lightgrey;text-align: center;"> <h5 id="statusInfoPosicoesTempo">Posicoes: 0      Tempo: 0s </h5>  </div>
+    </div>
+    <div id="map" style="height: 700px;"></div>
+    <div id="mobile-element"></div>
+    	<script>
+            function initialize() {
+                tagusMap = new TagusMap();
+                //tagusMapControl = new TagusMapControl();
+                tagusMapControlCompare = new TagusMapControlCompare();
+		pageRender = new PageRender();
+            }
+            window.onload = initialize();					
+
+        </script>
+
+    
+    <div >
+        <table id="table-compare">
+            <tr><th colspan="2" >AP</th><th colspan="2">AP</th></tr>
+            <tr><td>BSSI</td><td>power</td>
+            <td>BSSI</td><td>power</td></tr>
+        </table>
+    </div>
+    
+</body>
+</html>

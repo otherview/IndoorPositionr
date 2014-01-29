@@ -1,0 +1,9 @@
+#mobile-element { display: inherit; }
+
+/* Smartphones ----------- */
+@media only screen 
+and (max-width : 320px) {
+  /*#mobile-element { display: none; }*/
+  #showMobilePosition { height: 100px}
+  
+}

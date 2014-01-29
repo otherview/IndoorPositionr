@@ -1,4 +1,13 @@
+import os
+def fixpath(path):
+    if "\\" in path:
+        print "Encontrei"
+        if os.name == "posix":
+            path = path.replace("\\","/")
+    return os.path.abspath(os.path.expanduser(path))
+
 class PhysicalAccessPoint :
+    
     
     def __init__(self):
  
@@ -11,7 +20,7 @@ class PhysicalAccessPoint :
         import os
         localizacaoAPS = {}
         
-        with open(os.path.dirname(__file__) + '\\..\\_Tratamento de Dados\\APS - MACS.csv') as infile:
+        with open(fixpath(os.path.dirname(__file__) + '\\..\\_Tratamento de Dados\\APS - MACS.csv')) as infile:
             for line in infile:
                 linha = line.strip().split(";")
                 localizacaoAPS[linha[0].upper()[:-1]] = {}

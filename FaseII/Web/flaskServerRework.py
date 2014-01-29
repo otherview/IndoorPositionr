@@ -17,7 +17,7 @@ class FlaskServer():
         self.app = Flask(__name__, static_folder='static', static_url_path='')
         
         import sys
-        sys.path.append('../API_IndoorPositionFindr')
+        sys.path.append(fixpath('../API_IndoorPositionFindr'))
         import IndoorPositionr as IndoorPositionr
         self.indoorPositionr = IndoorPositionr.IndoorPositionr()
        
@@ -41,21 +41,66 @@ class FlaskServer():
     
         @self.app.route('/_get_possible_locations')
         def _get_possible_locations():
-            
-            
+   
             tmpLng = request.args.get('lng', 9.0, type=float)
             tmplat = request.args.get('lat', 9.0, type=float)
             position=(tmplat,tmpLng)
-            
-            
 
             return self.indoorPositionr.getLocationPossibilityFromMeasuredPathPoint(position)
         
         
+        @self.app.route('/_get_scan_position')
+        def _get_scan_position():
+           
+            return self.inoorPositionr.getLocationPossibilityFromScan()
+            
+            
+                
+        @self.app.route('/_get_continuous_scan_position')
+        def _get_continuous_scan_position():
+           
+            return self.indoorPositionr.getLocationPossibilityFromContinuousScan()
+            
+        @self.app.route('/_stop_continuous_scan_position')
+        def _stop_continuous_scan_position():
+           
+            return self.indoorPositionr.stopContinuousScan()
+        
+        
+        
+        @self.app.route('/_get_walk_and_position')
+        def _get_walk_and_position():
+           
+            return self.indoorPositionr.getPositionsFromTestWalk()
+            
+            
+            
         @self.app.route('/_get_self_position')
         def get_self_position():
            
             return self.webAP.getSelfPositionJSON()
+        
+        
+        @self.app.route('/_add_mobile_location_data',methods=['POST', 'GET'])
+        def _add_mobile_location_data():
+            
+            tmpMobileData = request.json['mobileData']
+            tmpMobileID =  tmpMobileData['mobileID']
+            del tmpMobileData['mobileID']
+            import logging
+            log = logging.getLogger('werkzeug')
+            
+            log.warning(tmpMobileData)
+
+            tmpReturnData = self.indoorPositionr.add_Mobile_Location_Data(tmpMobileData,tmpMobileID)
+
+            return jsonify({'ok':'tmpReturnData'})
+        
+        @self.app.route('/_get_mobile_position')
+        def _get_mobile_position():
+            
+            return self.indoorPositionr.get_Mobile_Location()
+           
         
         @self.app.route('/_get_scan_area')
         def _get_scan_area():
@@ -82,6 +127,9 @@ class FlaskServer():
             self.webAP.getSurveyedPositions()
 
             return jsonify(self.webAP.getPossibility())
+        
+        
+        
 
 
 def testFunct():
@@ -96,9 +144,13 @@ def main():
    
     testFunct()
     flask = FlaskServer()
-    flask.app.debug = True
-    flask.app.run()
+    flask.app.debug = False
+    
+    flask.app.run(host='0.0.0.0',port=80)
 
+import os
+def fixpath(path):
+    return os.path.abspath(os.path.expanduser(path))
     
     
 if __name__ == '__main__':

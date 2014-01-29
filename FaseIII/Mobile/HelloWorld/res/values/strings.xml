@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Indoor Positionr</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Status</string>
+    <string name="button_send">Start</string>
+    <string name="Title">Indoor Positionr</string>
+    <string name="LaunchURL">See Location</string>
+
+</resources>

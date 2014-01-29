@@ -13,9 +13,12 @@
 class DataBasr():
     
     def __init__(self,path= '../../DataBase/'):
+        import ContinuousScan as ContinuousScan
         import DataBasrFileAccess as fileAcess
         
-        self.fileAccess = fileAcess.DataBasrFileAccess(path)
+        self.path = path
+        self.fileAccess = fileAcess.DataBasrFileAccess(self.path)
+        self.continuousScan = ContinuousScan.ContinuousScan()
     
         
         return
@@ -30,6 +33,24 @@ class DataBasr():
         
         return self.fileAccess.measuredPathPoints.measuredPathPosition
 
+    def updateContinuousScan(self, scan, possiblePositions):
+        
+        self.continuousScan.updateContinuousScan(scan,possiblePositions)
+               
+        return
+    
+    def saveContinuousScan(self):
+        
+        self.fileAccess.saveContinuousScan(self.continuousScan)
+               
+        return
+    
+    def getMeasuredWalkPoints(self):
+        
+        return self.fileAccess.walkTestPathPoints
+    
+    
+ 
 
 def main():
     database = DataBasr()

@@ -9,13 +9,21 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 
+import os
+def fixpath(path):
+    if "\\" in path:
+        print "Encontrei"
+        if os.name == "posix":
+            path = path.replace("\\","/")
+    return os.path.abspath(os.path.expanduser(path))
+
 
 class WebAP():
     
     
     def __init__(self ):
         import sys
-        sys.path.append('../../FaseI/Wlanlist')
+        sys.path.append(fixpath('../../FaseI/Wlanlist'))
         from API import PhysicalAccessPoint as APF
     
         
@@ -75,9 +83,9 @@ class WebAP():
         
     def getSurveyedPositions(self ):
         import sys, os, copy
-        sys.path.append('../../FaseI/Wlanlist')
+        sys.path.append(fixpath('../../FaseI/Wlanlist'))
         import TrataDadosAPI.buscaValoresMedias_TESTE_ALPHA as buscaValoresMedias
-        buscaValoresMedias.init_busca_Valores(os.path.dirname(__file__) + '\\..\\Resultados\\TESTE_BETA\\RAW\\scan-19-10_35_posicoes-Tratado.csv',gridSplitter=False,webApp=True)
+        buscaValoresMedias.init_busca_Valores(fixpath(os.path.dirname(__file__) + '\\..\\Resultados\\TESTE_BETA\\RAW\\scan-19-10_35_posicoes-Tratado.csv'),gridSplitter=False,webApp=True)
         self.positionsSurveyed = copy.deepcopy( buscaValoresMedias.valores_RSSI)
         self.powersSurveyed = copy.deepcopy( buscaValoresMedias.valores_GridSplitter_RSSI)
         print "cenas"
@@ -90,9 +98,9 @@ class WebAP():
     
     def loadMeasuredPath(self ):
         import sys, os, copy
-        sys.path.append('../../FaseI/Wlanlist')
+        sys.path.append(fixpath('../../FaseI/Wlanlist'))
         import TrataDadosAPI.buscaValoresMedias_TESTE_ALPHA as buscaValoresMedias
-        buscaValoresMedias.init_busca_Valores(os.path.dirname(__file__) + '\\..\\Resultados\\TESTE_BETA\\RAW\\scan-19-10_caminhada-Tratado.csv',gridSplitter=False,webApp=True)
+        buscaValoresMedias.init_busca_Valores(fixpath(os.path.dirname(__file__) + '\\..\\Resultados\\TESTE_BETA\\RAW\\scan-19-10_caminhada-Tratado.csv'),gridSplitter=False,webApp=True)
         pointMeasured = copy.deepcopy(buscaValoresMedias.valores_RSSI)
         
         returnPoints = {}

@@ -52,7 +52,21 @@ function AccessPoints() {
     this.showPossiblePoints = function(lat,lng){
         
         var tempClosure = this
+        tempClosure.latLng = [lat,lng]
         var guessed =  $.getJSON('/_get_possible_locations', {"lat":lat,"lng":lng}).done( function(data) {
+                        for(ap in data){
+                            
+                            apPosition = data[ap]
+                            tempClosure.guessedAccessPoints[String(apPosition)] = new GuessedSingleAcessPoint(apPosition,data[ap],tempClosure.latLng)
+                                
+                            }
+                    });
+    }
+    
+    this.showScanGuessPosition = function(){
+        
+        var tempClosure = this
+        var scanned = $.getJSON('/_get_scan_position', {}).done( function(data) {
                         for(ap in data){
                             
                             apPosition = data[ap]
@@ -62,6 +76,77 @@ function AccessPoints() {
                     });
     }
     
+    
+    this.showContinuousScanGuessPosition = function(){
+        
+        var tempClosure = this
+        var scanned = $.getJSON('/_get_continuous_scan_position', {}).done( function(data) {
+                        for(ap in data){
+                            
+                            apPosition = data[ap]
+                            tempClosure.guessedAccessPoints[String(apPosition)] = new GuessedSingleAcessPoint(apPosition,data[ap])
+                                
+                            }
+                    });
+    }
+    
+    
+     this.stopContinuousScanGuessPosition = function(){
+        var stopContinuousScanGuessPosition = $.getJSON('/_stop_continuous_scan_position', {});
+    }
+    
+    
+    this.showWalkandGuessPosition = function(){
+        
+        var tempClosure = this
+        var tmpShowWalkandGuessPosition = $.getJSON('/_get_walk_and_position', {}).done( function(data) {
+                        for(ap in data){
+                            
+                            apPointArrayPossiblePositions = data[ap]
+                            console.log("-----------------")
+                            console.log(ap)
+                            console.log(apPointArrayPossiblePositions)
+                            console.log("-----------------")
+                            
+                            tempClosure.guessedAccessPoints[String(ap)] = new MultipleGuessedSingleAcessPoint(apPointArrayPossiblePositions,ap)
+                                
+                            }
+                    });
+    }
+    
+    
+    this.showMobilePositions = function() {
+        var tmpClosure = this
+        var tmpshowMobilePositions = $.getJSON('/_get_mobile_position', {}).done( function(data) {
+                    for (ap in tmpClosure.guessedAccessPoints) {
+                        tmpClosure.guessedAccessPoints[ap].clear()
+                    }
+                    
+                    DATATEST = data
+                    for (user in data) {
+                        console.log(user)
+                        for (mac in data[user]){
+                            
+                            var Positions = data[user][mac]
+                            console.log(Positions)
+                            tmpClosure.guessedAccessPoints[String(mac)] = new MobileGuessedSingleAcessPoint(Positions,mac,user)
+                            console.log(mac)
+                        }
+                    }
+                        //for(ap in data){
+                        //    
+                        //    apPointArrayPossiblePositions = data[ap]
+                        //    console.log("-----------------")
+                        //    console.log(ap)
+                        //    console.log(apPointArrayPossiblePositions)
+                        //    console.log(apPointArrayPossiblePositions)
+                        //    console.log("-----------------")
+                        //    
+                        //    tmpClosure.guessedAccessPoints[String(ap)] = new MobileGuessedSingleAcessPoint(apPointArrayPossiblePositions,ap)
+                        //        
+                        //    }
+                    });
+    }
     this.init();
     
     }

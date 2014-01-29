@@ -14,10 +14,12 @@ class DataBasrFileAccess():
     
     def __init__(self,path = '../../DataBase/'):
         
-        files = {'survey':'Survey-19_10-35_pos.csv','measurepath':'scan-19-10_caminhada-Tratado.csv'}
+        self.path = path
+        files = {'survey':'Survey-19_10-35_pos.csv','measurepath':'scan-19-10_caminhada-Tratado.csv','walkTest':'ContinuousScan-28-11-Caminhada1'}
 
         self.surveyPoints = self.loadSurveyPointsFromDataBase(path+files['survey'])
         self.measuredPathPoints = self.loadMeasuredPathPointsFromDataBase(path+files['measurepath'])
+        self.walkTestPathPoints = self.loadWalkPointsFromDataBase(path+files['walkTest'])
         return
     
     def loadSurveyPointsFromDataBase(self,path):
@@ -75,6 +77,40 @@ class DataBasrFileAccess():
                 tmpMeasuredPathPoints.addAccessPoint( accessPointBssi, (float(line.split(",")[:4][2]),float(line.split(",")[:4][3])), valores)
         return tmpMeasuredPathPoints
 
+
+    def saveContinuousScan(self, continuousScan):
+        
+        import datetime
+        today = datetime.date.today()
+        tmpFilename = "ContinuousScan-"+today.strftime('%d-%m')
+        import json
+        
+        with open(self.path+tmpFilename,'a+') as filename:
+            
+            for contScan in continuousScan.continuousScan:
+              filename.write(json.dumps(contScan))
+              filename.write(";")
+              for scan in continuousScan.continuousScan[contScan]:
+                filename.write(json.dumps(continuousScan.continuousScan[contScan][scan]))
+                filename.write(";")
+              filename.write("\n")
+                
+            
+        return
+            
+    
+    def loadWalkPointsFromDataBase(self,walkTestPath):
+        import json
+        tmpWalk = {}
+        
+        with open(walkTestPath,'r') as filename:
+            for line in filename:
+                tmpLine = line.split(';')
+                tmpWalk[tmpLine[0]] = {}
+                tmpWalk[tmpLine[0]]['powerRSSI'] = json.loads(tmpLine[2])
+                tmpWalk[tmpLine[0]]['calculatedPosition'] = json.loads(tmpLine[1])
+        
+        return tmpWalk
 
 def main():
     database = DataBasrFileAccess('../../DataBase/')

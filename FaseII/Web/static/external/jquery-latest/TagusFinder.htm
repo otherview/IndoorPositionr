@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0022)http://127.0.0.1:5000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="./TagusFinder_files/jquery-latest.min.js" type="text/javascript"></script><style type="text/css"></style>
+    
+    <!----------- leaflet Maps ----------->
+    <link rel="stylesheet" href="http://127.0.0.1:5000/external/leaflet-0.7/leaflet.css">
+    <script src="./TagusFinder_files/leaflet.js"></script>
+    <!---------- Awesome Markers --------->
+    <script src="./TagusFinder_files/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="http://127.0.0.1:5000/libs/awesomeMarkers/leaflet.awesome-markers.css">
+    
+    <!---------- leaflet Draw ------------>
+    <link rel="stylesheet" href="http://127.0.0.1:5000/libs/leaflet-draw/leaflet.draw.css">
+    <script src="./TagusFinder_files/leaflet.draw-src.js"></script>
+ 
+    
+    
+    <!----------- local libs ----------->
+    <script src="./TagusFinder_files/TagusMap.js"></script>
+    <script src="./TagusFinder_files/AccessPoints.js"></script>
+    <script src="./TagusFinder_files/SingleAccessPoint.js"></script>
+    <script src="./TagusFinder_files/TagusMapControl.js"></script>
+    <script src="./TagusFinder_files/TagusMapControlGrid.js"></script>
+    <script src="./TagusFinder_files/TagusMapControlCompare.js"></script>
+    
+    <!----------- local css and Page Functioning---------------->
+    <link rel="stylesheet" href="http://127.0.0.1:5000/css/styles.css">
+    <script src="./TagusFinder_files/PageRender.js"></script>
+    <title>TagusFinder</title>
+</head>
+<body style=""><h3> Tese Indoor Positioning</h3>
+    <button type="button" onclick="tagusMap.showSurveyAccessPoints()">Surveyed Positions</button>
+    <button type="button" onclick="tagusMapControl.initGrid()">Show Grid</button>
+    <button type="button" onclick="tagusMap.showMeasuredPathAccessPoints()">Load Real Path</button>
+    <button type="button" onclick="tagusMap.showScanGuessPosition()">Scan and Guess Position</button>
+    <button type="button" onclick="tagusMap.showScanGuessAndLogPosition()" id="buttonContinuousScan">Scan Guess Position and Log </button>
+    <button type="button" onclick="tagusMap.showWalkandGuessPosition()" id="buttonContinuousScan">Load walk and Guess Positioning </button>
+    <button type="button" onclick="tagusMap.showMobilePosition()" id="showMobilePosition">Start Show Mobile Position</button>
+    <div id="scanGuessStatus" style="background: lightgrey;text-align: center;"> <h5 id="statusInfoPosicoesTempo">Posicoes: 0      Tempo: 0s </h5>  </div>
+    <div id="map" style="height: 700px; position: relative;" class="leaflet-container leaflet-fade-anim" tabindex="0"><div class="leaflet-map-pane" style="-webkit-transform: translate3d(0px, 0px, 0);"><div class="leaflet-tile-pane"><div class="leaflet-layer"><div class="leaflet-tile-container"></div><div class="leaflet-tile-container leaflet-zoom-animated"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_3_3.jpg" style="height: 256px; width: 256px; left: 295px; top: 94px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_4_3.jpg" style="height: 256px; width: 256px; left: 551px; top: 94px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_3_4.jpg" style="height: 256px; width: 256px; left: 295px; top: 350px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_4_4.jpg" style="height: 256px; width: 256px; left: 551px; top: 350px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_5_3.jpg" style="height: 256px; width: 256px; left: 807px; top: 94px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_4_5.jpg" style="height: 256px; width: 256px; left: 551px; top: 606px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_4_2.jpg" style="height: 256px; width: 256px; left: 551px; top: -162px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_3_5.jpg" style="height: 256px; width: 256px; left: 295px; top: 606px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_3_2.jpg" style="height: 256px; width: 256px; left: 295px; top: -162px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_2_4.jpg" style="height: 256px; width: 256px; left: 39px; top: 350px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_2_3.jpg" style="height: 256px; width: 256px; left: 39px; top: 94px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_5_4.jpg" style="height: 256px; width: 256px; left: 807px; top: 350px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_2_2.jpg" style="height: 256px; width: 256px; left: 39px; top: -162px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_5_2.jpg" style="height: 256px; width: 256px; left: 807px; top: -162px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_5_5.jpg" style="height: 256px; width: 256px; left: 807px; top: 606px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_2_5.jpg" style="height: 256px; width: 256px; left: 39px; top: 606px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_6_4.jpg" style="height: 256px; width: 256px; left: 1063px; top: 350px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_6_3.jpg" style="height: 256px; width: 256px; left: 1063px; top: 94px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_1_3.jpg" style="height: 256px; width: 256px; left: -217px; top: 94px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_1_4.jpg" style="height: 256px; width: 256px; left: -217px; top: 350px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_6_2.jpg" style="height: 256px; width: 256px; left: 1063px; top: -162px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_1_5.jpg" style="height: 256px; width: 256px; left: -217px; top: 606px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_1_2.jpg" style="height: 256px; width: 256px; left: -217px; top: -162px;"><img class="leaflet-tile leaflet-tile-loaded" src="./TagusFinder_files/3_6_5.jpg" style="height: 256px; width: 256px; left: 1063px; top: 606px;"></div></div></div><div class="leaflet-objects-pane"><div class="leaflet-shadow-pane"></div><div class="leaflet-overlay-pane"></div><div class="leaflet-marker-pane"></div><div class="leaflet-popup-pane"></div></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="http://127.0.0.1:5000/#" title="Zoom in">+</a><a class="leaflet-control-zoom-out" href="http://127.0.0.1:5000/#" title="Zoom out">-</a></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="http://leafletjs.com/" title="A JS library for interactive maps">Leaflet</a></div></div></div></div>
+    <div id="mobile-element"></div>
+    	<script>
+            function initialize() {
+                tagusMap = new TagusMap();
+                //tagusMapControl = new TagusMapControl();
+                tagusMapControlCompare = new TagusMapControlCompare();
+		pageRender = new PageRender();
+            }
+            window.onload = initialize();					
+
+        </script>
+
+    
+    <div>
+        <table id="table-compare">
+            <tbody><tr><th colspan="2">AP</th><th colspan="2">AP</th></tr>
+            <tr><td>BSSI</td><td>power</td>
+            <td>BSSI</td><td>power</td></tr>
+        </tbody></table>
+    </div>
+    
+
+</body></html>
