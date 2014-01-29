@@ -1,7 +1,7 @@
 IndoorPositionr
 ===============
 
-IndoorPositionr is my thesis project, on indoor positioning using Python and Javascript to process and display 802.11 b/g/n (wifi..) signals and guess the position.
+IndoorPositionr is my thesis project, on indoor positioning using Android to provide the surrounding Access Points signals and Python, Javascript to process and display 802.11 b/g/n (wifi..) signals and guess the position.
 
 
 
