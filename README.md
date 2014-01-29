@@ -21,4 +21,4 @@ Main dependencies :
 
 
 The framework requests works with the following:
-![alt tag](https://raw.github.com/otherview/IndoorPositionr/blob/master/FaseII/DocsRandom/Plataforma.png)
+![alt tag](https://raw.github.com/otherview/IndoorPositionr/master/FaseII/DocsRandom/Plataforma.png)
